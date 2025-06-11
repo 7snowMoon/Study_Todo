@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <nav className={styles.navbar}>
-        <Link href="/" className={styles.navLink}>
+        <Link href="/main" className={styles.navLink}>
           Home
         </Link>
         <Link href="/about" className={styles.navLink}>

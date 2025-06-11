@@ -1,40 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Study_Todo アプリケーション
 
-## Getting Started
+このプロジェクトは、[Next.js] を使用して構築されたシンプルなTodoアプリケーションです。新しくプロジェクトに参加する方が、このアプリケーションのセットアップ、実行、および基本的な構造を理解できるように作成されています。
 
-First, run the development server:
+## 1. はじめに
+
+このアプリケーションは、タスクの管理（追加、表示、削除）を行うためのものです。フロントエンドはNext.jsで、バックエンドはNext.jsのAPIルートを使用しています。
+
+## 2. 開発環境のセットアップ
+
+プロジェクトを開始する前に、以下のツールがインストールされていることを確認してください。
+
+*   [Node.js](https://nodejs.org/ja/) (v18以上を推奨)
+*   [npm](https://www.npmjs.com/) (Node.jsに付属)
+
+### 依存関係のインストール
+
+プロジェクトのルートディレクトリで、以下のコマンドを実行して必要な依存関係をインストールします。
+
+```bash
+npm install
+```
+
+## 3. アプリケーションの実行
+
+依存関係のインストールが完了したら、開発サーバーを起動できます。
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+サーバーが起動したら、ブラウザで [http://localhost:3000/main](http://localhost:3000/main) にアクセスしてアプリケーションを確認できます。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 4. 主要なファイルとディレクトリ
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+このプロジェクトの主要なファイルとディレクトリは以下の通りです。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+*   `src/pages/main.tsx`: アプリケーションのメインページです。Todoリストの表示とTodoの追加フォームが含まれています。
+*   `src/components/TodoForm.tsx`: 新しいTodoを追加するためのフォームコンポーネントです。
+*   `src/components/TodoList.tsx`: Todoアイテムのリストを表示するコンポーネントです。
+*   `src/pages/api/todos.ts`: Todoアイテムの取得、追加、削除を処理するAPIルートです。
+*   `src/styles/globals.css`: グローバルなCSSスタイルシートです。
+*   `src/styles/Home.module.css`: `index.tsx`ページに適用されるモジュールCSSです。
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 5. APIルートについて
 
-## Learn More
+このプロジェクトでは、Next.jsの[APIルート]を使用してバックエンド機能を提供しています。
 
-To learn more about Next.js, take a look at the following resources:
+*   `src/pages/api/todos.ts`:
+    *   `GET /api/todos`: すべてのTodoアイテムを取得します。
+    *   `POST /api/todos`: 新しいTodoアイテムを追加します。
+    *   `DELETE /api/todos?id=[id]`: 指定されたIDのTodoアイテムを削除します。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+APIルートは `pages/api` ディレクトリにマッピングされており、このディレクトリ内のファイルはReactページではなくAPIエンドポイントとして扱われます。
