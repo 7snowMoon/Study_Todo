@@ -1,32 +1,51 @@
-import React, { useState, FormEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import styles from '@/styles/Home.module.css';
 
+// コンポーネントに渡されるプロパティの型を定義
 interface TodoFormProps {
+  // TODOを追加するための関数
   onAdd: (text: string) => void;
 }
 
-const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
-  const [newTodoText, setNewTodoText] = useState<string>("");
+// デフォルトエクスポートするTodoFormコンポーネント
+// Props型を明示的に指定することでTypeScriptの型チェックが効きます
+export default function TodoForm({ onAdd }: TodoFormProps) {
+  // useStateフックを使用して新しいTODOのテキストを管理
+  // newTodoText: 現在の入力値
+  // setNewTodoText: 入力値を更新するための関数
+  const [newTodoText, setNewTodoText] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (newTodoText.trim() === "") return;
-    onAdd(newTodoText);
-    setNewTodoText("");
+  // ボタンクリック時の処理
+  const handleClick = () => {
+    const trimmedText = newTodoText.trim();
+    if (!trimmedText) return;
+
+    onAdd(trimmedText);
+    setNewTodoText('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <div className={styles.form}>
+      <label htmlFor="todo-input">
+        新しいTODO
+      </label>
+      
       <input
+        id="todo-input"
         type="text"
         value={newTodoText}
         onChange={(e) => setNewTodoText(e.target.value)}
         placeholder="新しいTODOを追加"
         className={styles.input}
       />
-      <button type="submit" className={styles.button}>追加</button>
-    </form>
+      
+      <button
+        onClick={handleClick}
+        className={styles.button}
+        disabled={!newTodoText.trim()}
+      >
+        追加
+      </button>
+    </div>
   );
-};
-
-export default TodoForm;
+}
