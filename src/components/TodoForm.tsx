@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import styles from '@/styles/Home.module.css';
+import styles from '@/styles/Main.module.css';
 
 // コンポーネントに渡されるプロパティの型を定義
 interface TodoFormProps {
@@ -7,8 +7,7 @@ interface TodoFormProps {
   onAdd: (text: string) => void;
 }
 
-// デフォルトエクスポートするTodoFormコンポーネント
-// Props型を明示的に指定することでTypeScriptの型チェックが効きます
+
 export default function TodoForm({ onAdd }: TodoFormProps) {
   // useStateフックを使用して新しいTODOのテキストを管理
   // newTodoText: 現在の入力値
@@ -26,9 +25,6 @@ export default function TodoForm({ onAdd }: TodoFormProps) {
 
   return (
     <div className={styles.form}>
-      <label htmlFor="todo-input">
-        新しいTODO
-      </label>
       
       <input
         id="todo-input"

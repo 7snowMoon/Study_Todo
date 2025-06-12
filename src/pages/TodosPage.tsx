@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import TodoList from "@/components/TodoList";
 import TodoForm from "@/components/TodoForm";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Main.module.css";
 
 interface Todo {
   id: number;
@@ -10,7 +10,7 @@ interface Todo {
   completed: boolean;
 }
 
-export default function Home() {
+export default function TodosPage() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
@@ -59,16 +59,24 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Simple TODO App</title>
-        <meta name="description" content="A simple TODO application with Next.js" />
+        <title>TODOリスト</title>
+        <meta name="description" content="TODOリストのメインページ" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1 className={styles.title}>TODO List</h1>
-          <TodoForm onAdd={addTodo} />
-          <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+          <h1 className={styles.title}>TODOリスト</h1>
+
+          <div className={styles.section}>
+            <h2>TODO入力</h2>
+            <TodoForm onAdd={addTodo} />
+          </div>
+
+          <div className={styles.section}>
+            <h2>TODO一覧</h2>
+            <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+          </div>
         </main>
       </div>
     </>

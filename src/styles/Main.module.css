@@ -47,6 +47,21 @@
   margin-bottom: 1.5rem;
 }
 
+.section {
+  margin-top: 2rem;
+  padding: 1.5rem; /* padding-topだけでなく、全体にpaddingを適用 */
+  border: 1px solid #ddd; /* ボーダーを追加 */
+  border-radius: 8px; /* 角を丸くする */
+  background-color: #f9f9f9; /* 背景色を変更 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 影を追加 */
+}
+
+.section h2 {
+  text-align: center;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
 .form {
   display: flex;
   gap: 0.5rem;

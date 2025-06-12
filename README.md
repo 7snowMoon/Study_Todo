@@ -29,7 +29,7 @@ npm install
 npm run dev
 ```
 
-サーバーが起動したら、ブラウザで [http://localhost:3000/main](http://localhost:3000/main) にアクセスしてアプリケーションを確認できます。
+サーバーが起動したら、ブラウザで [http://localhost:3000/TodosPage](http://localhost:3000/TodosPage) にアクセスしてアプリケーションを確認できます。
 
 ## 4. 主要なファイルとディレクトリ
 
