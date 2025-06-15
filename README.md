@@ -35,12 +35,13 @@ npm run dev
 
 このプロジェクトの主要なファイルとディレクトリは以下の通りです。
 
-*   `src/pages/main.tsx`: アプリケーションのメインページです。Todoリストの表示とTodoの追加フォームが含まれています。
-*   `src/components/TodoForm.tsx`: 新しいTodoを追加するためのフォームコンポーネントです。
-*   `src/components/TodoList.tsx`: Todoアイテムのリストを表示するコンポーネントです。
-*   `src/pages/api/todos.ts`: Todoアイテムの取得、追加、削除を処理するAPIルートです。
+*   `src/pages/TodosPage.tsx`: TODOリストのメインページです。TODOの追加、完了、削除機能が含まれています。
+*   `src/pages/CompletedTodosPage.tsx`: 完了したTODOのみを表示するページです。
+*   `src/components/TodoForm.tsx`: 新しいTODOを追加するためのフォームコンポーネントです。
+*   `src/components/TodoList.tsx`: TODOアイテムのリストを表示するコンポーネントです。
+*   `src/pages/api/todos.ts`: TODOアイテムの取得、追加、更新、削除を処理するAPIルートです。
 *   `src/styles/globals.css`: グローバルなCSSスタイルシートです。
-*   `src/styles/Home.module.css`: `index.tsx`ページに適用されるモジュールCSSです。
+*   `src/styles/Main.module.css`: アプリケーション全体に適用されるモジュールCSSです。
 
 ## 5. APIルートについて
 
@@ -52,3 +53,42 @@ npm run dev
     *   `DELETE /api/todos?id=[id]`: 指定されたIDのTodoアイテムを削除します。
 
 APIルートは `pages/api` ディレクトリにマッピングされており、このディレクトリ内のファイルはReactページではなくAPIエンドポイントとして扱われます。
+
+## 6. Reactの主要概念（このアプリでの適用例）
+
+このアプリケーションでは、Reactの基本的な概念が多数使用されています。
+
+*   **コンポーネント (Components)**:
+    *   `TodosPage.tsx`, `TodoForm.tsx`, `TodoList.tsx` など、UIの各部分が独立したコンポーネントとして定義されています。これにより、コードの再利用性と保守性が向上します。
+*   **Props (プロパティ)**:
+    *   親コンポーネントから子コンポーネントへデータを渡すために使用されます。例えば、`TodosPage.tsx` から `TodoList.tsx` へ `todos`（TODOアイテムの配列）や `onToggle`, `onDelete`（イベントハンドラ関数）がpropsとして渡されています。
+    *   `TodoForm.tsx` には `onAdd` 関数がpropsとして渡され、新しいTODOが追加されたときに親コンポーネントに通知します。
+*   **State (状態)**:
+    *   `useState` フックを使用して、コンポーネント内で変化するデータを管理します。
+    *   `TodosPage.tsx` では、`todos`（TODOリスト）の状態を管理するために `useState` が使われています。
+    *   `TodoForm.tsx` では、入力フィールドのテキスト (`newTodoText`) の状態を管理するために `useState` が使われています。
+*   **Effects (副作用)**:
+    *   `useEffect` フックを使用して、コンポーネントのレンダリング後に実行される副作用（データフェッチ、DOM操作など）を扱います。
+    *   `TodosPage.tsx` では、コンポーネントがマウントされたときに一度だけTODOリストをAPIからフェッチするために `useEffect` が使われています。
+*   **条件付きレンダリング (Conditional Rendering)**:
+    *   `TodoList.tsx` では、`showControls` propsの値に基づいてチェックボックスや削除ボタンを表示するかどうかを切り替えています。これにより、同じコンポーネントを異なる表示要件で再利用できます。
+
+## 7. Next.jsのルーティング
+
+Next.jsでは、`pages` ディレクトリ内のファイルが自動的にルーティングされます。
+
+*   `/TodosPage` にアクセスすると、`src/pages/TodosPage.tsx` がレンダリングされます。
+*   `/CompletedTodosPage` にアクセスすると、`src/pages/CompletedTodosPage.tsx` がレンダリングされます。
+
+ナビゲーションバー (`src/pages/_app.tsx`) からこれらのページにリンクしています。
+
+## 8. 学習のポイント
+
+このアプリケーションを学ぶ上で、以下の点に注目すると理解が深まります。
+
+*   **コンポーネント間のデータの流れ**: 親コンポーネントから子コンポーネントへpropsを通じてデータがどのように渡され、子コンポーネントから親コンポーネントへイベントハンドラを通じてどのようにデータが戻されるか。
+*   **非同期処理**: `fetch` APIと`async/await` を使用したAPIとの連携方法。
+*   **状態の更新**: `setTodos` のような状態更新関数がどのように新しいUIをトリガーするか。
+*   **TypeScriptの活用**: インターフェース定義 (`interface Todo`) やpropsの型付けが、どのように開発を助けるか。
+
+このアプリをベースに、新しい機能を追加したり、既存の機能を改善したりすることで、さらに実践的な学習を進めることができます。
